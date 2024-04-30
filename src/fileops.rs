@@ -66,3 +66,34 @@ pub fn get_default_config_file_location() -> Result<String, io::Error> {
 
     return Ok("".to_string());
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_get_default_config_file_location_ok() {
+        let res = get_default_config_file_location();
+        assert!(res.is_ok());
+    }
+
+    #[test]
+    fn test_get_default_config_file_not_nil() {
+        let res = get_default_config_file_location();
+        assert_ne!(res.unwrap(), "");
+    }
+
+    #[test]
+    fn test_read_config_file_ok() {
+        let default_config = get_default_config_file_location().unwrap();
+        let res = read_config_file(default_config);
+        assert!(res.is_ok());
+    }
+
+    #[test]
+    fn test_read_config_file_not_nil() {
+        let default_config = get_default_config_file_location().unwrap();
+        let res = read_config_file(default_config);
+        assert_ne!(res.unwrap(), "");
+    }
+}

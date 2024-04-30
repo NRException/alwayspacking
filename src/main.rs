@@ -7,6 +7,5 @@ fn main() {
     let val: String  = fileops::get_default_config_file_location().unwrap();
     let config_file_contents = fileops::read_config_file(val.clone()).unwrap();
 
-
     println!("{}", config_file_contents);
 }

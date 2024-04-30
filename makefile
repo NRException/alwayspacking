@@ -1,8 +1,16 @@
 rund:
-	RUST_LOG=trace cargo run
+	@clear
+	@echo "---- tests ----"
+	@cargo test
+	@echo "---- run ----"
+	@RUST_LOG=trace cargo run
 
 run:
-	RUST_LOG=warn cargo run
+	@clear
+	@echo "---- tests ----"
+	@cargo test
+	@echo "---- run ----"
+	@RUST_LOG=warn cargo run
 
 test:
-	cargo test
+	@cargo test
