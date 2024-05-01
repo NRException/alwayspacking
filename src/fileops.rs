@@ -22,7 +22,7 @@ pub fn get_default_config_file_location() -> Result<String, io::Error> {
                 format!("c:\\users\\{}", username),
                 format!("c:\\users\\{}\\.config", username),
             ].into();
-            debug!("OS Type: Windows");
+            debug!("os type: windows");
         }
 
         "linux" => {
@@ -31,7 +31,7 @@ pub fn get_default_config_file_location() -> Result<String, io::Error> {
                 format!("/home/{}", username),
                 format!("/home/{}/.config", username),
             ].into();
-            debug!("OS Type: Linux");
+            debug!("os type: linux");
         }
 
         // Assume nix path construction always...
@@ -41,6 +41,7 @@ pub fn get_default_config_file_location() -> Result<String, io::Error> {
                 format!("/home/{}", username),
                 format!("/home/{}/.config", username),
             ].into();
+            debug!("os type: defaulting (assuming *nix)");
         }
     }
 
@@ -55,11 +56,11 @@ pub fn get_default_config_file_location() -> Result<String, io::Error> {
         let md = fs::metadata(i);
         let _isvalid = match md {
             Ok(_) => {
-                debug!("Found valid config file {}", i);
+                debug!("found valid config file: {}", i);
                 return Ok(i.to_string());
             }
             Err(e) => {
-                debug!("Could not find valid config file with {}, ({})", i, e.to_string());
+                debug!("could not find valid config file with {}, ({})", i, e.to_string());
             }
         };
     }
